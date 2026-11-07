@@ -31,6 +31,6 @@ echo "[*] Re-signing (skipped)"
 # codesign disabled for debugging
 
 echo "[*] Repackaging"
-(cd "$WORK" && zip -qr "out.ipa" Payload)
+(cd "$WORK" && zip -0qr "out.ipa" Payload)
 mv "$WORK/out.ipa" "./$(basename "$IPA" .ipa)-patched.ipa"
 echo "Done: $(basename "$IPA" .ipa)-patched.ipa"
