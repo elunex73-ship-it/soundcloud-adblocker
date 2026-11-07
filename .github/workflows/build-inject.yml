@@ -20,6 +20,11 @@ jobs:
         run: |
           cd soundcloud-adblocker-ios
           make package
+      - name: Upload dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: soundcloud-dylib
+          path: soundcloud-adblocker-ios/.theos/obj/debug/*.dylib
       - name: Download IPA
         run: |
           wget -O soundcloud.ipa "https://github.com/elunex73-ship-it/soundcloud-adblocker/releases/download/v1.0/com.soundcloud.TouchApp-8.85.0-eeveedecrypter.ipa"
