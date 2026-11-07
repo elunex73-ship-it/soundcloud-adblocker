@@ -1,0 +1,10 @@
+[
+  { "id": 1, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||promoted.soundcloud.com", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 2, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "||audio-ads", "resourceTypes": ["xmlhttprequest", "media", "other"] } },
+  { "id": 3, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "doubleclick.net", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 4, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "googlesyndication.com", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 5, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "googleads.g.doubleclick.net", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 6, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "pagead2.googlesyndication.com", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 7, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "ads.soundcloud.com", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } },
+  { "id": 8, "priority": 1, "action": { "type": "block" }, "condition": { "urlFilter": "soundcloud.com/ads", "resourceTypes": ["xmlhttprequest", "script", "image", "media", "other"] } }
+]

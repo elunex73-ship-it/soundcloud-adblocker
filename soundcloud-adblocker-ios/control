@@ -1,0 +1,9 @@
+Package: com.yourname.soundcloudadblocker
+Name: SoundCloud Ad Blocker
+Depends: mobilesubstrate (>= 0.9.5000)
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Blocks audio and video ads in the SoundCloud app.
+Maintainer: you
+Author: you
+Section: Tweaks

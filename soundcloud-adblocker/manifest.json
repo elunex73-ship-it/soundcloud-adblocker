@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "SoundCloud Ad Blocker",
+  "version": "1.0.0",
+  "description": "Blocks audio and display ads on SoundCloud.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.soundcloud.com/*",
+    "*://*.sndcdn.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://soundcloud.com/*", "*://*.soundcloud.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SoundCloud Ad Blocker"
+  }
+}
