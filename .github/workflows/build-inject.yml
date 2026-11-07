@@ -9,8 +9,8 @@ jobs:
         run: |
           git clone https://github.com/Tyilo/insert_dylib.git /tmp/insert_dylib
           cd /tmp/insert_dylib
-          clang -o insert_dylib insert_dylib/main.c
-          sudo cp insert_dylib /usr/local/bin/
+          clang -o /tmp/insert_dylib_bin insert_dylib/main.c
+          sudo cp /tmp/insert_dylib_bin /usr/local/bin/insert_dylib
       - name: Install Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
