@@ -8,6 +8,7 @@ jobs:
       - name: Install Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
+          brew install ldid
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
       - name: Build tweak
         run: |
