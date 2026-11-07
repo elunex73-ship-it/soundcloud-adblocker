@@ -11,15 +11,12 @@ jobs:
           cd /tmp/insert_dylib
           clang -o /tmp/insert_dylib_bin insert_dylib/main.c
           sudo cp /tmp/insert_dylib_bin /usr/local/bin/insert_dylib
-      - name: Install Theos
-        run: |
-          git clone --recursive https://github.com/theos/theos.git $HOME/theos
-          brew install ldid
-          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
       - name: Build tweak
         run: |
-          cd soundcloud-adblocker-ios
-          make package
+          SDK=$(xcrun --sdk iphoneos --show-sdk-path)
+          xcrun clang -target arm64-apple-ios14.0 -isysroot "$SDK" -fobjc-arc -framework Foundation -framework AVFoundation -dynamiclib -o libSoundCloudAdBlocker.dylib soundcloud-adblocker-ios/Tweak.m
+          mkdir -p soundcloud-adblocker-ios/.theos/obj/debug
+          cp libSoundCloudAdBlocker.dylib soundcloud-adblocker-ios/.theos/obj/debug/
       - name: Upload dylib
         uses: actions/upload-artifact@v4
         with:
