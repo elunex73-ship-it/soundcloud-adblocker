@@ -27,10 +27,8 @@ else
   echo "Need insert_dylib or yololib"; exit 1
 fi
 
-echo "[*] Re-signing"
-if [ -n "$IDENTITY" ]; then
-  codesign -f -s "$IDENTITY" --entitlements entitlements.plist "$APPDIR" 2>/dev/null || codesign -f -s "$IDENTITY" "$APPDIR"
-fi
+echo "[*] Re-signing (skipped)"
+# codesign disabled for debugging
 
 echo "[*] Repackaging"
 (cd "$WORK" && zip -qr "out.ipa" Payload)
