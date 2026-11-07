@@ -5,7 +5,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Theos
+      - name: Build insert_dylib
+        run: |
+          git clone https://github.com/Tyilo/insert_dylib.git /tmp/insert_dylib
+          cd /tmp/insert_dylib && make
+          sudo cp insert_dylib /usr/local/bin/
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           brew install ldid
