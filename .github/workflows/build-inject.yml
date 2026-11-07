@@ -9,8 +9,7 @@ jobs:
         run: |
           git clone https://github.com/Tyilo/insert_dylib.git /tmp/insert_dylib
           cd /tmp/insert_dylib
-          SRC=$(find . -name "*.c" | head -n1)
-          clang -o insert_dylib "$SRC"
+          clang -o insert_dylib insert_dylib/main.c
           sudo cp insert_dylib /usr/local/bin/
       - name: Install Theos
         run: |
