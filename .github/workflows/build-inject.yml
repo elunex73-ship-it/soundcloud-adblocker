@@ -10,6 +10,7 @@ jobs:
           git clone https://github.com/Tyilo/insert_dylib.git /tmp/insert_dylib
           cd /tmp/insert_dylib && make
           sudo cp insert_dylib /usr/local/bin/
+      - name: Install Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           brew install ldid
