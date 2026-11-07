@@ -11,26 +11,23 @@ trap 'rm -rf "$WORK"' EXIT
 
 echo "[*] Extracting IPA"
 unzip -q "$IPA" -d "$WORK"
+echo "[*] Extracted"
 APP=$(ls "$WORK/Payload" | head -n1)
 APPDIR="$WORK/Payload/$APP"
 BINARY=$(plutil -extract CFBundleExecutable raw "$APPDIR/Info.plist")
+echo "[*] App: $APP Binary: $BINARY"
 
 echo "[*] Copying dylib"
-cp "$DYLIB" "$APPDIR/Frameworks/" 2>/dev/null || { mkdir -p "$APPDIR/Frameworks"; cp "$DYLIB" "$APPDIR/Frameworks/"; }
+mkdir -p "$APPDIR/Frameworks"
+cp "$DYLIB" "$APPDIR/Frameworks/"
+echo "[*] Copied"
 
 echo "[*] Injecting load command"
-if command -v insert_dylib >/dev/null 2>&1; then
-  insert_dylib --inplace "@executable_path/Frameworks/$(basename "$DYLIB")" "$APPDIR/$BINARY"
-elif command -v yololib >/dev/null 2>&1; then
-  yololib "$APPDIR/$BINARY" "Frameworks/$(basename "$DYLIB")"
-else
-  echo "Need insert_dylib or yololib"; exit 1
-fi
-
-echo "[*] Re-signing (skipped)"
-# codesign disabled for debugging
+insert_dylib --inplace "@executable_path/Frameworks/$(basename "$DYLIB")" "$APPDIR/$BINARY"
+echo "[*] Injected"
 
 echo "[*] Repackaging"
 (cd "$WORK" && zip -0qr "out.ipa" Payload)
+echo "[*] Repackaged"
 mv "$WORK/out.ipa" "./$(basename "$IPA" .ipa)-patched.ipa"
 echo "Done: $(basename "$IPA" .ipa)-patched.ipa"
